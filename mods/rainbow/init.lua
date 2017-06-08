@@ -101,7 +101,9 @@ minetest.register_chatcommand("info", {
 })
 
 rainbow={}
-
+rainbow.config={}
+rainbow.config.away_radius=16
+rainbow.config.away_radius_max=24
 rainbow.modpath = minetest.get_modpath("rainbow")
 
 rainbow.colours = {
@@ -343,7 +345,7 @@ minetest.register_alias("flowers:mushroom_brown","rainbow:mushroom_brown")
 
 dofile(rainbow.modpath .. "/nodes.lua")
 dofile(rainbow.modpath .. "/mapgen.lua")
---dofile(rainbow.modpath .. "/goaway.lua")
+dofile(rainbow.modpath .. "/goaway.lua")
 
 WATER_ALPHA = minetest.registered_nodes["rainbow:white_water_source"].alpha
 WATER_VISC = minetest.registered_nodes["rainbow:white_water_source"].liquid_viscosity

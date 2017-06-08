@@ -1,3 +1,6 @@
+minetest.register_privilege("stay", {
+	description = "Can not be made to go away."
+})
 
 
 local function away_make_formspec(pos)
@@ -113,4 +116,4 @@ minetest.register_abm({
 	end,
 })
 
-minetest.register_alias("areas:away","rainbow:goaway")
+--minetest.register_alias("areas:away","rainbow:goaway")
