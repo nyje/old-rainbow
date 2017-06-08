@@ -78,7 +78,7 @@ minetest.register_chatcommand("ping", {
 			if name then
 				local ping = minetest.get_player_information(name).avg_rtt / 2
 				ping = math.floor(ping * 1000)
-				minetest.chat_send_player(player_name, name.." IP:"..minetest.get_player_information(name).address.."  Ping: "..ping.."ms")
+				minetest.chat_send_player(player_name, "     "..name.." IP:"..minetest.get_player_information(name).address.."  Ping: "..ping.."ms")
 			end
 		end
 	end

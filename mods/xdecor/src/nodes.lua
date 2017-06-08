@@ -234,16 +234,16 @@ minetest.register_alias("xdecor:curtain_open_red","rainbow:curtain_open_red")
 --minetest.register_alias("xdecor:cushion","xdecor:cushion_red")
 
 for _, row in ipairs(rainbow.colours) do
-	local fgroups = {cushion=1, colourable=1, snappy=3, flammable=3, fall_damage_add_percent=-50}
+	local cgroups = {cushion=1, colourable=1, snappy=3, flammable=3, fall_damage_add_percent=-50}
     if row[1]~="white" then
-        fgroups.not_in_creative_inventory = 1
+        cgroups.not_in_creative_inventory = 1
     else
-        fgroups.not_in_creative_inventory = nil
+        cgroups.not_in_creative_inventory = nil
     end
 	xdecor.register("cushion_"..row[1], {
 		description = row[2].." Cushion",
 		tiles = {"cushion.png^[colorize:"..row[3]},
-		groups = fgroups,
+		groups = cgroups,
 		on_place = minetest.rotate_node,
 		node_box = xdecor.nodebox.slab_y(0.5),
 		can_dig = xdecor.sit_dig,
@@ -258,9 +258,30 @@ for _, row in ipairs(rainbow.colours) do
         output = "xdecor:cushion_"..row[1],
         recipe = { "group:cushion", "rainbow:dye_"..row[1] }
     })
+	local tgroups = {colourable=1, xtable=1, choppy=2, oddly_breakable_by_hand=1, flammable=2}
+    if row[1]~="white" then
+        tgroups.not_in_creative_inventory = 1
+    else
+        tgroups.not_in_creative_inventory = nil
+    end
+	xdecor.register("table_"..row[1], {
+		description = row[2].."Table",
+		tiles = {"xdecor_wood.png^[colorize:"..row[3]},
+		groups = tgroups,
+		sounds = default.node_sound_wood_defaults(),
+		node_box = xdecor.pixelbox(16, {
+			{0, 14, 0, 16, 2, 16}, {5.5, 0, 5.5, 5, 14, 6}
+		})
+	})
+	minetest.register_craft({
+        type = "shapeless",
+        output = "xdecor:table_"..row[1],
+        recipe = { "group:xtable", "rainbow:dye_"..row[1] }
+    })
 end
---
-minetest.register_alias("xdecor:cushion","rainbow:cushion_red")
+
+minetest.register_alias("xdecor:table","xdecor:table_brown")
+minetest.register_alias("xdecor:cushion","xdecor:cushion_red")
 
 xdecor.register("cushion_block", {
 	description = "Cushion Block",
@@ -463,28 +484,22 @@ end
 register_hard_node("cactusbrick", "Cactus Brick")
 register_hard_node("coalstone_tile", "Coal Stone Tile")
 register_hard_node("desertstone_tile", "Desert Stone Tile")
-register_hard_node("hard_clay", "Hardened Clay")
+--register_hard_node("hard_clay", "Hardened Clay")
+minetest.register_alias("xdecor:hard_clay","rainbow:stoneblock_white")
 register_hard_node("moonbrick", "Moon Brick")
-register_hard_node("stone_tile", "Stone Tile")
+--register_hard_node("stone_tile", "Stone Tile")
+minetest.register_alias("xdecor:stone_tile","rainbow:stoneblock_grey")
 register_hard_node("stone_rune", "Runestone")
-register_hard_node("packed_ice", "Packed Ice", {
-	groups = {cracky=1, puts_out_fire=1},
-	sounds = default.node_sound_glass_defaults()
-})
+--register_hard_node("packed_ice", "Packed Ice", {
+-- 	groups = {cracky=1, puts_out_fire=1},
+-- 	sounds = default.node_sound_glass_defaults()
+-- })
+minetest.register_alias("xdecor:packed_ice","rainbow:ice_blue")
 register_hard_node("wood_tile", "Wooden Tile", {
 	groups = {choppy=1, wood=1, flammable=2},
 	sounds = default.node_sound_wood_defaults()
 })
 
-xdecor.register("table", {
-	description = "Table",
-	tiles = {"xdecor_wood.png"},
-	groups = {choppy=2, oddly_breakable_by_hand=1, flammable=2},
-	sounds = default.node_sound_wood_defaults(),
-	node_box = xdecor.pixelbox(16, {
-		{0, 14, 0, 16, 2, 16}, {5.5, 0, 5.5, 5, 14, 6}
-	})
-})
 
 xdecor.register("tatami", {
 	description = "Tatami",

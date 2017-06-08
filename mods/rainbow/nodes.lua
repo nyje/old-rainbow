@@ -81,8 +81,8 @@ for _, row in ipairs(rainbow.colours) do
     else
         fgroups.not_in_creative_inventory = nil
     end
-    
-    
+
+
     minetest.register_node("rainbow:"..row[1].."_water_source", {
         description = row[2].." Water Source",
         drawtype = "liquid",
@@ -123,7 +123,7 @@ for _, row in ipairs(rainbow.colours) do
         liquid_alternative_source = "rainbow:"..row[1].."_water_source",
         liquid_viscosity = 1,
         --post_effect_color = {a = 103, r = 30, g = 60, b = 90},
-        groups = {water = 3, liquid = 3, puts_out_fire = 1, cools_lava = 1, colourable = 1, not_in_creative_inventory = 1} , 
+        groups = {water = 3, liquid = 3, puts_out_fire = 1, cools_lava = 1, colourable = 1, not_in_creative_inventory = 1} ,
         sounds = default.node_sound_water_defaults(),
     })
 
@@ -179,8 +179,8 @@ for _, row in ipairs(rainbow.colours) do
         output = "rainbow:"..row[1].."_water_source",
         recipe = { "group:water", "rainbow:dye_"..row[1] }
     })
-    
-    
+
+
 	default.register_fence("rainbow:fence_"..row[1], {
 		description = row[2].." Fence",
 		texture = "plain_wood.png^[colorize:"..row[3],
@@ -258,7 +258,7 @@ for _, row in ipairs(rainbow.colours) do
 
 
 
- 
+
 local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
 
     add_node("markings_line_solid", "Solid Line", row, "", {
@@ -823,7 +823,7 @@ local add_plant = function(a, b, c, d)
 	d.flower = 1
 	d.flora = 1
 	d.attached_node = 1
-    d.not_in_creative_inventory = nil
+--    d.not_in_creative_inventory = nil
 
 	minetest.register_node("rainbow:" .. a, {
 		description = b,

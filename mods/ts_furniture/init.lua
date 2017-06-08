@@ -1,5 +1,6 @@
 ts_furniture = {}
 
+
 -- If true, you can sit on chairs and benches, when right-click them.
 ts_furniture.enable_sitting = true
 
