@@ -68,6 +68,21 @@ local function do_pingkick ( )
 end
 minetest.after(60, do_pingkick)
 
+minetest.register_chatcommand("ping", {
+    privs = {server = true},
+    params = "",
+    description = "Get ip & ping of wielded item",
+    func = function(player_name, param)
+		for i, player in pairs(minetest.get_connected_players()) do
+			local name = player:get_player_name()
+			if name then
+				local ping = minetest.get_player_information(name).avg_rtt / 2
+				ping = math.floor(ping * 1000)
+				minetest.chat_send_player(player_name, name.." IP:"..minetest.get_player_information(name).address.."  Ping: "..ping.."ms")
+			end
+		end
+	end
+})
 
 minetest.register_chatcommand("wit", {
     privs = {server = true},

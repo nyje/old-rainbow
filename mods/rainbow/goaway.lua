@@ -1,5 +1,5 @@
 minetest.register_privilege("stay", {
-	description = "Can not be made to go away."
+	description = "Can use go aways."
 })
 
 
@@ -77,6 +77,11 @@ end
 local function away_set_meta(pos,placer,istack,pt)
 	local meta = minetest.get_meta(pos)
 	local pn = placer:get_player_name()
+	if not minetest.check_player_privs(pn, {stay = true}) then
+		minetest.set_node(pos, {name="air"})
+		minetest.chat_send_player(pn, "You don't have privileges to place goaway")
+		return
+	end
 	if pn then
 		meta:set_string("scanname", pn )
 		minetest.log("action", "Setting scanner to ignore "..pn)
@@ -87,7 +92,7 @@ end
 minetest.register_node("rainbow:goaway", {
 	tiles = {"noentry.png"},
 	paramtype = "light",
-	light_source = 14,
+	light_source = 7,
     sunlight_propagates = true,
 	walkable = true,
 	groups = {cracky=3},
