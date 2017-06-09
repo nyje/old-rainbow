@@ -3,50 +3,8 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 
-local skies = {
-	{"Underground", "#101010", 0.5},
-    {"Orbit","#101050", 1.0},
-    {"Space","#102030", 1.0},
-}
 
-sky = {}
 
-sky.reset = function(player)
-	player:override_day_night_ratio(nil)
-	player:set_sky("white", "regular")
-	player:set_attribute("skybox:skybox", "off")
-end
-
-sky.set = function(player,s)
-	player:set_sky(skies[s][2], "plain", {})
- 	player:set_attribute("skybox:skybox", skies[s][1])
-end
-
-local timer = 0
-minetest.register_globalstep(function(dtime)
-	timer = timer + dtime;
-	if timer >= 1 then
-		timer=0
-		for _, player in ipairs(minetest.get_connected_players()) do
-			local pos = player:getpos()
-			if pos.y >= 500 then
-				player:set_physics_override({gravity = 0.01}) -- speed, jump, gravity
-                player:override_day_night_ratio(0.8)
-				sky.set(player, 3)
-			elseif pos.y >= 200 then
-				player:set_physics_override({gravity=0.1}) -- speed, jump, gravity
-				sky.set(player, 2)
-			elseif pos.y <= -20 then
-				player:set_physics_override({gravity=1}) -- speed, jump, gravity
-                player:override_day_night_ratio(0)
-				sky.set(player,1)
-			else
-				player:set_physics_override({gravity=1}) -- speed, jump, gravity
-				sky.reset(player)
-			end
-		end
-	end
-end)
 
 
 local function do_pingkick ( )

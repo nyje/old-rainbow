@@ -139,6 +139,30 @@ minetest.register_chatcommand("rename_area", {
 	end
 })
 
+minetest.register_chatcommand("g", {
+	params = "<ID> <gravity>",
+	description = "Set gravity strength in your area",
+	func = function(name, param)
+		local id, gravity = param:match("^(%d+)%s(.+)$")
+		if not id then
+			return false, "Invalid usage, see /help rename_area."
+		end
+
+		id = tonumber(id)
+		if not id then
+			return false, "That area doesn't exist."
+		end
+
+		if not areas:isAreaOwner(id, name) then
+			return true, "You don't own that area."
+		end
+
+		areas.areas[id].gravity = tonumber(gravity)
+		areas:save()
+		return true, "Area Gravity Apllied...area:"..id.." "..gravity.."g"
+	end
+})
+
 
 minetest.register_chatcommand("find_areas", {
 	params = "<regexp>",

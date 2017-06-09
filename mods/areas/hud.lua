@@ -2,23 +2,70 @@
 
 areas.hud = {}
 
+local sky = {}
+
+local skies = {
+	{"Underground", "#101010", 0.5},
+    {"Orbit","#101050", 1.0},
+    {"Space","#102030", 1.0},
+}
+
+sky.reset = function(player)
+	player:override_day_night_ratio(nil)
+	player:set_sky("white", "regular")
+	player:set_attribute("skybox:skybox", "off")
+end
+
+sky.set = function(player,s)
+	player:set_sky(skies[s][2], "plain", {})
+ 	player:set_attribute("skybox:skybox", skies[s][1])
+end
+
+local gtimer = 0
+
 minetest.register_globalstep(function(dtime)
 	for _, player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local pos = vector.round(player:getpos())
 		local areaStrings = {}
 
-		for id, area in pairs(areas:getAreasAtPos(pos)) do
-			table.insert(areaStrings, ("%s [%u] (%s%s)")
-					:format(area.name, id, area.owner,
-					area.open and ":open" or ""))
-		end
+
+        local hereareas = areas:getAreasAtPos(pos)
+        if #hereareas>0 then
+            for id, area in pairs(hereareas) do
+                table.insert(areaStrings, ("%s [%u] (%s%s)")
+                        :format(area.name, id, area.owner,
+                        area.open and ":open" or ""))
+                if area.gravity then
+                    player:set_physics_override({gravity = area.gravity}) 
+                end
+            end
+        else
+            gtimer = gtimer + dtime;
+            if gtimer >= 1 then gtimer=0 end            
+            if pos.y >= 500 then
+                player:set_physics_override({gravity = 0.01}) -- speed, jump, gravity
+                player:override_day_night_ratio(0.8)
+                sky.set(player, 3)
+            elseif pos.y >= 200 then
+                player:set_physics_override({gravity=0.1}) -- speed, jump, gravity
+                sky.set(player, 2)
+            elseif pos.y <= -20 then
+                player:set_physics_override({gravity=1}) -- speed, jump, gravity
+                player:override_day_night_ratio(0)
+                sky.set(player,1)
+            else
+                player:set_physics_override({gravity=1}) -- speed, jump, gravity
+                sky.reset(player)
+            end            
+        end        
 
 		for i, area in pairs(areas:getExternalHudEntries(pos)) do
 			local str = ""
 			if area.name then str = area.name .. " " end
 			if area.id then str = str.."["..area.id.."] " end
 			if area.owner then str = str.."("..area.owner..")" end
+            if area.gravity then str = str.."["..area.gravity.."g]" end
 			table.insert(areaStrings, str)
 		end
 
