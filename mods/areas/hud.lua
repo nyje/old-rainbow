@@ -2,24 +2,6 @@
 
 areas.hud = {}
 
-local sky = {}
-
-local skies = {
-	{"Underground", "#101010", 0.5},
-    {"Orbit","#101050", 1.0},
-    {"Space","#102030", 1.0},
-}
-
-sky.reset = function(player)
-	player:override_day_night_ratio(nil)
-	player:set_sky("white", "regular")
-	player:set_attribute("skybox:skybox", "off")
-end
-
-sky.set = function(player,s)
-	player:set_sky(skies[s][2], "plain", {})
- 	player:set_attribute("skybox:skybox", skies[s][1])
-end
 
 local gtimer = 0
 
@@ -37,28 +19,34 @@ minetest.register_globalstep(function(dtime)
                         :format(area.name, id, area.owner,
                         area.open and ":open" or ""))
                 if area.gravity then
-                    player:set_physics_override({gravity = area.gravity}) 
+                    player:set_physics_override({gravity = area.gravity})
                 end
             end
         else
             gtimer = gtimer + dtime;
-            if gtimer >= 1 then gtimer=0 end            
+            if gtimer >= 1 then gtimer=0 end
             if pos.y >= 500 then
-                player:set_physics_override({gravity = 0.01}) -- speed, jump, gravity
+                player:set_physics_override({gravity = 0.01})
                 player:override_day_night_ratio(0.8)
-                sky.set(player, 3)
+				player:set_sky("#102030", "plain", {})
+			 	--player:set_attribute("skybox:skybox", skies[s][1])
             elseif pos.y >= 200 then
-                player:set_physics_override({gravity=0.1}) -- speed, jump, gravity
-                sky.set(player, 2)
+                player:set_physics_override({gravity=0.1})
+				player:override_day_night_ratio(nil)
+				player:set_sky("#101050", "plain", {})
+			 	--player:set_attribute("skybox:skybox", skies[s][1])
             elseif pos.y <= -20 then
-                player:set_physics_override({gravity=1}) -- speed, jump, gravity
+                player:set_physics_override({gravity=1})
                 player:override_day_night_ratio(0)
-                sky.set(player,1)
+				player:set_sky("#101010", "plain", {})
+			 	--player:set_attribute("skybox:skybox", skies[s][1])
             else
-                player:set_physics_override({gravity=1}) -- speed, jump, gravity
-                sky.reset(player)
-            end            
-        end        
+                player:set_physics_override({gravity=1})
+				player:override_day_night_ratio(nil)
+				player:set_sky("white", "regular")
+				--player:set_attribute("skybox:skybox", "off")
+            end
+        end
 
 		for i, area in pairs(areas:getExternalHudEntries(pos)) do
 			local str = ""
