@@ -1,0 +1,102 @@
+
+
+-------------
+  Separator
+-------------
+
+2017-06-15 15:57:26: [Main]: Automatically selecting world at [/home/nyje/Games/MINETEST/bin/../worlds/Rainbow]
+2017-06-15 15:57:32: ERROR[AsyncWorker-0]: servers.minetest.net/list?proto_version_min=25&proto_version_max=32 not found (Timeout was reached) (response code 0)
+2017-06-15 15:57:46: ERROR[Main]: mod "lavalamp" has unsatisfied dependencies:  "bucket" "unifieddyes" "wool"
+2017-06-15 15:57:46: ERROR[Main]: mod "lrfurn" has unsatisfied dependencies:  "unifieddyes" "wool"
+2017-06-15 15:57:46: WARNING[Main]: NodeDefManager: Ignoring CONTENT_IGNORE redefinition
+2017-06-15 15:57:46: WARNING[Main]: [signs_lib] Attempt to register unknown node as fence
+2017-06-15 15:57:47: ACTION[Main]: [crops] Loaded!
+2017-06-15 15:57:47: ERROR[Main]: ModError: Failed to load and run script from /home/nyje/Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:
+2017-06-15 15:57:47: ERROR[Main]: ...e/Games/MINETEST/bin/../games/rainbow/mods/areas/hud.lua:46: unexpected symbol near ':'
+2017-06-15 15:57:47: ERROR[Main]: stack traceback:
+2017-06-15 15:57:47: ERROR[Main]: 	[C]: in function 'dofile'
+2017-06-15 15:57:47: ERROR[Main]: 	.../Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:18: in main chunk
+2017-06-15 15:57:47: ERROR[Main]: Check debug.txt for details.
+2017-06-15 15:58:06: ERROR[Main]: mod "lavalamp" has unsatisfied dependencies:  "bucket" "unifieddyes" "wool"
+2017-06-15 15:58:06: ERROR[Main]: mod "lrfurn" has unsatisfied dependencies:  "unifieddyes" "wool"
+2017-06-15 15:58:06: WARNING[Main]: NodeDefManager: Ignoring CONTENT_IGNORE redefinition
+2017-06-15 15:58:06: WARNING[Main]: [signs_lib] Attempt to register unknown node as fence
+2017-06-15 15:58:08: ACTION[Main]: [crops] Loaded!
+2017-06-15 15:58:08: ERROR[Main]: ModError: Failed to load and run script from /home/nyje/Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:
+2017-06-15 15:58:08: ERROR[Main]: ...e/Games/MINETEST/bin/../games/rainbow/mods/areas/hud.lua:63: unexpected symbol near ':'
+2017-06-15 15:58:08: ERROR[Main]: stack traceback:
+2017-06-15 15:58:08: ERROR[Main]: 	[C]: in function 'dofile'
+2017-06-15 15:58:08: ERROR[Main]: 	.../Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:18: in main chunk
+2017-06-15 15:58:08: ERROR[Main]: Check debug.txt for details.
+2017-06-15 15:58:30: ERROR[Main]: mod "lavalamp" has unsatisfied dependencies:  "bucket" "unifieddyes" "wool"
+2017-06-15 15:58:30: ERROR[Main]: mod "lrfurn" has unsatisfied dependencies:  "unifieddyes" "wool"
+2017-06-15 15:58:30: WARNING[Main]: NodeDefManager: Ignoring CONTENT_IGNORE redefinition
+2017-06-15 15:58:30: WARNING[Main]: [signs_lib] Attempt to register unknown node as fence
+2017-06-15 15:58:31: ACTION[Main]: [crops] Loaded!
+2017-06-15 15:58:31: ERROR[Main]: ModError: Failed to load and run script from /home/nyje/Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:
+2017-06-15 15:58:31: ERROR[Main]: ...e/Games/MINETEST/bin/../games/rainbow/mods/areas/hud.lua:63: unexpected symbol near '.'
+2017-06-15 15:58:31: ERROR[Main]: stack traceback:
+2017-06-15 15:58:31: ERROR[Main]: 	[C]: in function 'dofile'
+2017-06-15 15:58:31: ERROR[Main]: 	.../Games/MINETEST/bin/../games/rainbow/mods/areas/init.lua:18: in main chunk
+2017-06-15 15:58:31: ERROR[Main]: Check debug.txt for details.
+2017-06-15 15:59:12: ERROR[Main]: mod "lavalamp" has unsatisfied dependencies:  "bucket" "unifieddyes" "wool"
+2017-06-15 15:59:12: ERROR[Main]: mod "lrfurn" has unsatisfied dependencies:  "unifieddyes" "wool"
+2017-06-15 15:59:12: WARNING[Main]: NodeDefManager: Ignoring CONTENT_IGNORE redefinition
+2017-06-15 15:59:12: WARNING[Main]: [signs_lib] Attempt to register unknown node as fence
+2017-06-15 15:59:14: ACTION[Main]: [crops] Loaded!
+2017-06-15 15:59:14: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:14: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:14: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:14: ACTION[Main]:         .__               __                   __   
+2017-06-15 15:59:14: ACTION[Main]:   _____ |__| ____   _____/  |_  ____   _______/  |_ 
+2017-06-15 15:59:14: ACTION[Main]:  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
+2017-06-15 15:59:14: ACTION[Main]: |  Y Y  \  |   |  \  ___/|  | \  ___/ \___ \  |  |  
+2017-06-15 15:59:14: ACTION[Main]: |__|_|  /__|___|  /\___  >__|  \___  >____  > |__|  
+2017-06-15 15:59:14: ACTION[Main]:       \/        \/     \/          \/     \/        
+2017-06-15 15:59:14: ACTION[Main]: World at [/home/nyje/Games/MINETEST/bin/../worlds/Rainbow]
+2017-06-15 15:59:14: ACTION[Main]: Server for gameid="rainbow" listening on 0.0.0.0:30001.
+2017-06-15 15:59:14: ACTION[Server]: Server: User Nigel at 127.0.0.1 supplied wrong password (auth mechanism: SRP).
+2017-06-15 15:59:14: ERROR[Main]: Access denied. Reason: Invalid password
+2017-06-15 15:59:22: ERROR[Main]: mod "lavalamp" has unsatisfied dependencies:  "bucket" "unifieddyes" "wool"
+2017-06-15 15:59:22: ERROR[Main]: mod "lrfurn" has unsatisfied dependencies:  "unifieddyes" "wool"
+2017-06-15 15:59:22: WARNING[Main]: NodeDefManager: Ignoring CONTENT_IGNORE redefinition
+2017-06-15 15:59:23: WARNING[Main]: [signs_lib] Attempt to register unknown node as fence
+2017-06-15 15:59:24: ACTION[Main]: [crops] Loaded!
+2017-06-15 15:59:24: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:24: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:24: WARNING[Main]: Field "maxwear" is deprecated; replace with uses=1/maxwear
+2017-06-15 15:59:24: ACTION[Main]:         .__               __                   __   
+2017-06-15 15:59:24: ACTION[Main]:   _____ |__| ____   _____/  |_  ____   _______/  |_ 
+2017-06-15 15:59:24: ACTION[Main]:  /     \|  |/    \_/ __ \   __\/ __ \ /  ___/\   __\
+2017-06-15 15:59:24: ACTION[Main]: |  Y Y  \  |   |  \  ___/|  | \  ___/ \___ \  |  |  
+2017-06-15 15:59:24: ACTION[Main]: |__|_|  /__|___|  /\___  >__|  \___  >____  > |__|  
+2017-06-15 15:59:24: ACTION[Main]:       \/        \/     \/          \/     \/        
+2017-06-15 15:59:24: ACTION[Main]: World at [/home/nyje/Games/MINETEST/bin/../worlds/Rainbow]
+2017-06-15 15:59:24: ACTION[Main]: Server for gameid="rainbow" listening on 0.0.0.0:30001.
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "wool_grey.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_rose.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_tulip.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_dandelion_yellow.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_dandelion_white.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_geranium.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "flowers_viola.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "wool_black.png" while building texture; Creating a dummy image
+2017-06-15 15:59:34: ERROR[Main]: generateImage(): Could not load image "wool_grey.png" while building texture; Creating a dummy image
+2017-06-15 15:59:35: ERROR[Main]: generateImage(): Could not load image "building_blocks_towel.png" while building texture; Creating a dummy image
+2017-06-15 15:59:35: ACTION[Server]: Nigel [127.0.0.1] joins game. 
+2017-06-15 15:59:35: ACTION[Server]: Nigel joins game. List of players: Nigel
+2017-06-15 15:59:35: ACTION[Server]: Showing formspec to Nigel
+2017-06-15 15:59:42: ERROR[Server]: An unhandled exception occurred: Failed to save block: database disk image is malformed
+2017-06-15 15:59:42: ERROR[Server]: In thread 7f5ed0e91700:
+2017-06-15 15:59:42: ERROR[Server]: /home/nyje/Games/MINETEST/src/server.cpp:73: virtual void* ServerThread::run(): A fatal error occured: Failed to save block: database disk image is malformed
+2017-06-15 15:59:42: ERROR[Server]: Debug stacks:
+2017-06-15 15:59:42: ERROR[Server]: DEBUG STACK FOR THREAD 7f5eb95fa700: 
+2017-06-15 15:59:42: ERROR[Server]: #0  virtual void* UpdateThread::run()
+2017-06-15 15:59:42: ERROR[Server]: DEBUG STACK FOR THREAD 7f5eb9dfb700: 
+2017-06-15 15:59:42: ERROR[Server]: #0  virtual void* EmergeThread::run()
+2017-06-15 15:59:42: ERROR[Server]: DEBUG STACK FOR THREAD 7f5eba5fc700: 
+2017-06-15 15:59:42: ERROR[Server]: #0  virtual void* UpdateThread::run()
+2017-06-15 15:59:42: ERROR[Server]: DEBUG STACK FOR THREAD 7f5ed0e91700: 
+2017-06-15 15:59:42: ERROR[Server]: #0  virtual void* ServerThread::run()
+2017-06-15 15:59:42: ERROR[Server]: DEBUG STACK FOR THREAD 7f5ee7a97800: 
+2017-06-15 15:59:42: ERROR[Server]: #0  int main(int, char**)

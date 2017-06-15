@@ -12,7 +12,7 @@ minetest.register_globalstep(function(dtime)
 		local areaStrings = {}
 
 
-        gtimer = gtimer + dtime;
+        gtimer = gtimer + dtime
         if gtimer >= 1 then 
             gtimer=0
             if pos.y >= 500 then
@@ -43,7 +43,7 @@ minetest.register_globalstep(function(dtime)
         for id, area in pairs(areas:getAreasAtPos(pos)) do
             if area.gravity then
                 lgrav=area.gravity
-            else:
+            else
                 area.gravity=1
             end
             table.insert(areaStrings, ("%s <%.2f>[%u] (%s%s)")
@@ -60,7 +60,7 @@ minetest.register_globalstep(function(dtime)
 			table.insert(areaStrings, str)
 		end
 
-		local areaString = "Gravity %.2fg Areas:":format(lgrav)
+		local areaString = string.format("Gravity %.2fg Areas:",lgrav)
 		if #areaStrings > 0 then
 			areaString = areaString.."\n"..
 				table.concat(areaStrings, "\n")
