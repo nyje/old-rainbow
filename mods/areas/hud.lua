@@ -49,7 +49,7 @@ minetest.register_globalstep(function(dtime)
         
 		for i, area in pairs(areas:getExternalHudEntries(pos)) do
 			local str = ""
-			if area.name then str = area.name .. " " end
+			if area.name then str = area.name .. " poop " end
 			if area.id then str = str.."["..area.id.."] " end
 			if area.owner then str = str.."("..area.owner..")" end
             if area.gravity then str = str.."["..area.gravity.."g]" end

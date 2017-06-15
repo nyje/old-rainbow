@@ -2,11 +2,6 @@ minetest.register_on_joinplayer(function(player)
     minetest.after(0, player.hud_set_hotbar_itemcount, player, 16)
 end)
 
-
-
-
-
-
 local function do_pingkick ( )
     for i, player in pairs(minetest.get_connected_players()) do
         local name = player:get_player_name()
