@@ -38,13 +38,17 @@ minetest.register_globalstep(function(dtime)
             end
         end
 
+        local lgrav = 1
+
         for id, area in pairs(areas:getAreasAtPos(pos)) do
-            table.insert(areaStrings, ("%s [%u] (%s%s)")
-                    :format(area.name, id, area.owner,
-                    area.open and ":open" or ""))
             if area.gravity then
-                player:set_physics_override({gravity = area.gravity})
+                lgrav=area.gravity
+            else:
+                area.gravity=1
             end
+            table.insert(areaStrings, ("%s <%.2f>[%u] (%s%s)")
+                    :format(area.name, area.gravity, id, area.owner,
+                    area.open and ":open" or ""))
         end
         
 		for i, area in pairs(areas:getExternalHudEntries(pos)) do
@@ -56,7 +60,7 @@ minetest.register_globalstep(function(dtime)
 			table.insert(areaStrings, str)
 		end
 
-		local areaString = "Beeeeep:"
+		local areaString = ":"
 		if #areaStrings > 0 then
 			areaString = areaString.."\n"..
 				table.concat(areaStrings, "\n")
