@@ -3,41 +3,40 @@
 areas.hud = {}
 
 
-local gtimer = 0
 
 minetest.register_globalstep(function(dtime)
-    gtimer = gtimer + dtime
-    if gtimer >= 0.5 then 
-        gtimer=0
+	for _, player in pairs(minetest.get_connected_players()) do
+		local name = player:get_player_name()
+		local pos = vector.round(player:getpos())
+		local areaStrings = {}
+        local lgrav = 1
+
         if pos.y >= 500 then
+            lgrav = 0.01
             player:set_physics_override({gravity = 0.01})
             player:override_day_night_ratio(0.8)
             player:set_sky("#102030", "plain", {})
             --player:set_attribute("skybox:skybox", skies[s][1])
         elseif pos.y >= 200 then
+            lgrav = 0.1
             player:set_physics_override({gravity=0.1})
             player:override_day_night_ratio(nil)
             player:set_sky("#101050", "plain", {})
             --player:set_attribute("skybox:skybox", skies[s][1])
         elseif pos.y <= -20 then
+            lgrav = 1
             player:set_physics_override({gravity=1})
             player:override_day_night_ratio(0)
             player:set_sky("#101010", "plain", {})
             --player:set_attribute("skybox:skybox", skies[s][1])
         else
+            lgrav = 1
             player:set_physics_override({gravity=1})
             player:override_day_night_ratio(nil)
             player:set_sky("white", "regular")
             --player:set_attribute("skybox:skybox", "off")
         end
-    end
 
-	for _, player in pairs(minetest.get_connected_players()) do
-		local name = player:get_player_name()
-		local pos = vector.round(player:getpos())
-		local areaStrings = {}
-
-        local lgrav = 1
         for id, area in pairs(areas:getAreasAtPos(pos)) do
             if area.gravity then
                 lgrav=area.gravity
