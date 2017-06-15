@@ -6,7 +6,7 @@ areas.hud = {}
 local gcount=0
 minetest.register_globalstep(function(dtime)
     gcount = gcount+dtime
-    if gcount>0.2:
+    if gcount>0.2 then
         gcount=0
         for _, player in pairs(minetest.get_connected_players()) do
             local name = player:get_player_name()
