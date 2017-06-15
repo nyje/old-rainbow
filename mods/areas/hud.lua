@@ -46,7 +46,7 @@ minetest.register_globalstep(function(dtime)
             else
                 area.gravity=1
             end
-            table.insert(areaStrings, ("%s <%.2f>[%u] (%s%s)")
+            table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                     :format(area.name, area.gravity, id, area.owner,
                     area.open and ":open" or ""))
         end
@@ -60,7 +60,7 @@ minetest.register_globalstep(function(dtime)
 			table.insert(areaStrings, str)
 		end
 
-		local areaString = string.format("Gravity %.2fg Areas:",lgrav)
+		local areaString = string.format("Gravity %.2fg   Areas:",lgrav)
 		if #areaStrings > 0 then
 			areaString = areaString.."\n"..
 				table.concat(areaStrings, "\n")
