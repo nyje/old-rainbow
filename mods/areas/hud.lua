@@ -60,7 +60,7 @@ minetest.register_globalstep(function(dtime)
 			table.insert(areaStrings, str)
 		end
 
-		local areaString = ":"
+		local areaString = "Gravity %.2fg Areas:":format(lgrav)
 		if #areaStrings > 0 then
 			areaString = areaString.."\n"..
 				table.concat(areaStrings, "\n")
