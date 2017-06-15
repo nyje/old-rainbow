@@ -12,42 +12,41 @@ minetest.register_globalstep(function(dtime)
 		local areaStrings = {}
 
 
-        local hereareas = areas:getAreasAtPos(pos)
-        if #hereareas>0 then
-            for id, area in pairs(hereareas) do
-                table.insert(areaStrings, ("%s [%u] (%s%s)")
-                        :format(area.name, id, area.owner,
-                        area.open and ":open" or ""))
-                if area.gravity then
-                    player:set_physics_override({gravity = area.gravity})
-                end
-            end
-        else
-            gtimer = gtimer + dtime;
-            if gtimer >= 1 then gtimer=0 end
+        gtimer = gtimer + dtime;
+        if gtimer >= 1 then 
+            gtimer=0
             if pos.y >= 500 then
                 player:set_physics_override({gravity = 0.01})
                 player:override_day_night_ratio(0.8)
-				player:set_sky("#102030", "plain", {})
-			 	--player:set_attribute("skybox:skybox", skies[s][1])
+                player:set_sky("#102030", "plain", {})
+                --player:set_attribute("skybox:skybox", skies[s][1])
             elseif pos.y >= 200 then
                 player:set_physics_override({gravity=0.1})
-				player:override_day_night_ratio(nil)
-				player:set_sky("#101050", "plain", {})
-			 	--player:set_attribute("skybox:skybox", skies[s][1])
+                player:override_day_night_ratio(nil)
+                player:set_sky("#101050", "plain", {})
+                --player:set_attribute("skybox:skybox", skies[s][1])
             elseif pos.y <= -20 then
                 player:set_physics_override({gravity=1})
                 player:override_day_night_ratio(0)
-				player:set_sky("#101010", "plain", {})
-			 	--player:set_attribute("skybox:skybox", skies[s][1])
+                player:set_sky("#101010", "plain", {})
+                --player:set_attribute("skybox:skybox", skies[s][1])
             else
                 player:set_physics_override({gravity=1})
-				player:override_day_night_ratio(nil)
-				player:set_sky("white", "regular")
-				--player:set_attribute("skybox:skybox", "off")
+                player:override_day_night_ratio(nil)
+                player:set_sky("white", "regular")
+                --player:set_attribute("skybox:skybox", "off")
             end
         end
 
+        for id, area in pairs(areas:getAreasAtPos(pos)) do
+            table.insert(areaStrings, ("%s [%u] (%s%s)")
+                    :format(area.name, id, area.owner,
+                    area.open and ":open" or ""))
+            if area.gravity then
+                player:set_physics_override({gravity = area.gravity})
+            end
+        end
+        
 		for i, area in pairs(areas:getExternalHudEntries(pos)) do
 			local str = ""
 			if area.name then str = area.name .. " " end
