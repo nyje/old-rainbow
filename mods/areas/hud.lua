@@ -44,7 +44,7 @@ minetest.register_globalstep(function(dtime)
                     lgrav=area.gravity
                 end
                 if area.fly then
-                    afly="No Fly!"
+                    afly="No Fly! "
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                         :format(area.name, area.gravity, id, area.owner,
