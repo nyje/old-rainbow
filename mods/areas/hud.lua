@@ -36,25 +36,28 @@ minetest.register_globalstep(function(dtime)
                 --player:set_attribute("skybox:skybox", "off")
             end
 
+
+
+            local pprivs = minetest.get_player_privs(name)
             for id, area in pairs(areas:getAreasAtPos(pos)) do
-                local privs = minetest.get_player_privs(name)
-                if area.gravity then
+                if area.gravity~=nil then
                     lgrav=area.gravity
-                    if privs.fly then 
-                        privs.fly=nil
-                        minetest.set_player_privs(name, privs) 
+                    if pprivs.fly~=nil then 
+                        pprivs.fly=nil
+                        minetest.set_player_privs(name, pprivs) 
                     end  
                 else
-                    area.gravity=1
-                    if not privs.fly then
-                        privs.fly=true
-                        minetest.set_player_privs(name, privs) 
+                    area.gravity=lgrav
+                    if pprivs.fly==nil then
+                        pprivs.fly=true
+                        minetest.set_player_privs(name, pprivs) 
                     end
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                         :format(area.name, area.gravity, id, area.owner,
                         area.open and ":open" or ""))
             end
+            if lgrav!=1 then
             player:set_physics_override({gravity=lgrav})
                 
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
