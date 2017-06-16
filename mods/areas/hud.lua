@@ -42,6 +42,8 @@ minetest.register_globalstep(function(dtime)
             for id, area in pairs(areas:getAreasAtPos(pos)) do
                 if area.gravity then
                     lgrav=area.gravity
+                else
+                    area.gravity=lgrav
                 end
                 if area.fly then
                     afly="No Fly! "
