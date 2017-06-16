@@ -57,7 +57,6 @@ minetest.register_globalstep(function(dtime)
                         :format(area.name, area.gravity, id, area.owner,
                         area.open and ":open" or ""))
             end
-            if lgrav!=1 then
             player:set_physics_override({gravity=lgrav})
                 
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
