@@ -59,9 +59,9 @@ minetest.register_globalstep(function(dtime)
             end
             minetest.set_player_privs(name, pprivs) 
             
-            if agrav:
+            if agrav then
                 player:set_physics_override({gravity=agrav})
-            else:
+            else
                 player:set_physics_override({gravity=lgrav})
             end
 
