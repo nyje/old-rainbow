@@ -145,7 +145,7 @@ minetest.register_chatcommand("g", {
 	func = function(name, param)
 		local id, gravity = param:match("^(%d+)%s(.+)$")
 		if not id then
-			return false, "Invalid usage, see /help rename_area."
+			return false, "Invalid usage, see /help g."
 		end
 
 		id = tonumber(id)
@@ -163,6 +163,33 @@ minetest.register_chatcommand("g", {
 	end
 })
 
+minetest.register_chatcommand("fly", {
+	params = "<ID> <yes/no>",
+	description = "Set anti-fly your area",
+	func = function(name, param)
+		local id, antifly = param:match("^(%d+)%s(.+)$")
+		if not id then
+			return false, "Invalid usage, see /help fly."
+		end
+
+		id = tonumber(id)
+		if not id then
+			return false, "That area doesn't exist."
+		end
+
+		if not areas:isAreaOwner(id, name) then
+			return true, "You don't own that area."
+		end
+
+        if antifly="no" then
+    		areas.areas[id].fly = true
+        else
+    		areas.areas[id].fly = nil
+        end        
+		areas:save()
+		return true, "Area"..id.." has flying set to:"..antifly
+	end
+})
 
 minetest.register_chatcommand("find_areas", {
 	params = "<regexp>",
