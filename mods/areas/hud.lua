@@ -40,17 +40,15 @@ minetest.register_globalstep(function(dtime)
 
             local pprivs = minetest.get_player_privs(name)
             for id, area in pairs(areas:getAreasAtPos(pos)) do
-                if area.gravity~=nil then
+                if area.gravity~=1 then
                     lgrav=area.gravity
-                    if pprivs.fly~=nil then 
+                    if pprivs.fly then 
                         pprivs.fly=nil
-                        minetest.set_player_privs(name, pprivs) 
                     end  
                 else
                     area.gravity=lgrav
-                    if pprivs.fly==nil then
+                    if not pprivs.fly then
                         pprivs.fly=true
-                        minetest.set_player_privs(name, pprivs) 
                     end
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
@@ -58,6 +56,7 @@ minetest.register_globalstep(function(dtime)
                         area.open and ":open" or ""))
             end
             player:set_physics_override({gravity=lgrav})
+            minetest.set_player_privs(name, pprivs) 
                 
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
                 local str = ""
