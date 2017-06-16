@@ -38,11 +38,10 @@ minetest.register_globalstep(function(dtime)
 
 
 
-            local agrav = 0
             local afly = true
             for id, area in pairs(areas:getAreasAtPos(pos)) do
-                if area.gravity and area.gravity~=lgrav then
-                    agrav=area.gravity
+                if area.gravity then
+                    lgrav=area.gravity
                 end
                 if area.fly then
                     afly=false
@@ -58,12 +57,7 @@ minetest.register_globalstep(function(dtime)
                 pprivs.fly=nil
             end
             minetest.set_player_privs(name, pprivs) 
-            
-            if agrav then
-                player:set_physics_override({gravity=agrav})
-            else
-                player:set_physics_override({gravity=lgrav})
-            end
+            player:set_physics_override({gravity=lgrav})
 
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
                 local str = ""
