@@ -38,20 +38,20 @@ minetest.register_globalstep(function(dtime)
 
 
 
-            local afly = true
+            local afly = ""
             for id, area in pairs(areas:getAreasAtPos(pos)) do
                 if area.gravity then
                     lgrav=area.gravity
                 end
                 if area.fly then
-                    afly=false
+                    afly="No Fly!"
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                         :format(area.name, area.gravity, id, area.owner,
                         area.open and ":open" or ""))
             end
             local pprivs = minetest.get_player_privs(name)
-            if afly then
+            if afly=="" then
                 pprivs.fly=true
             else
                 pprivs.fly=nil
@@ -66,8 +66,8 @@ minetest.register_globalstep(function(dtime)
                 if area.owner then str = str.."("..area.owner..")" end
                 table.insert(areaStrings, str)
             end
-
-            local areaString = string.format("Gravity: %.2fg   Areas: ",lgrav)
+            
+            local areaString = string.format(afly.."Gravity: %.2fg   Areas: ",lgrav)
             if #areaStrings > 0 then
                 areaString = areaString.."\n"..
                     table.concat(areaStrings, "\n")
