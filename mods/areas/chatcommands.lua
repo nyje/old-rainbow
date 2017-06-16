@@ -181,7 +181,7 @@ minetest.register_chatcommand("fly", {
 			return true, "You don't own that area."
 		end
 
-        if antifly="no" then
+        if antifly=="no" then
     		areas.areas[id].fly = true
         else
     		areas.areas[id].fly = nil
