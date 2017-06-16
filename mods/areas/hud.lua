@@ -40,7 +40,7 @@ minetest.register_globalstep(function(dtime)
 
             local pprivs = minetest.get_player_privs(name)
             for id, area in pairs(areas:getAreasAtPos(pos)) do
-                if area.gravity~=1 then
+                if area.gravity then
                     lgrav=area.gravity
                     if pprivs.fly then 
                         pprivs.fly=nil
