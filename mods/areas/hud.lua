@@ -37,10 +37,19 @@ minetest.register_globalstep(function(dtime)
             end
 
             for id, area in pairs(areas:getAreasAtPos(pos)) do
+                local privs = minetest.get_player_privs(name)
                 if area.gravity then
                     lgrav=area.gravity
+                    if privs.fly then 
+                        privs.fly=nil
+                        minetest.set_player_privs(name, privs) 
+                    end  
                 else
                     area.gravity=1
+                    if not privs.fly then
+                        privs.fly=true
+                        minetest.set_player_privs(name, privs) 
+                    end
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                         :format(area.name, area.gravity, id, area.owner,
@@ -53,7 +62,6 @@ minetest.register_globalstep(function(dtime)
                 if area.name then str = area.name .. " " end
                 if area.id then str = str.."["..area.id.."] " end
                 if area.owner then str = str.."("..area.owner..")" end
-                if area.gravity then str = str.."["..area.gravity.."g]" end
                 table.insert(areaStrings, str)
             end
 
