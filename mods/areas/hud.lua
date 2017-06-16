@@ -38,26 +38,33 @@ minetest.register_globalstep(function(dtime)
 
 
 
-            local messing = false
+            local agrav = 0
+            local afly = true
             for id, area in pairs(areas:getAreasAtPos(pos)) do
-                if area.gravity~=nil then
-                    lgrav=area.gravity
-                    messing=true
+                if area.gravity and area.gravity~=lgrav then
+                    agrav=area.gravity
+                end
+                if area.fly then
+                    afly=false
                 end
                 table.insert(areaStrings, ("%s(%.2fg) [%u] (%s%s)")
                         :format(area.name, area.gravity, id, area.owner,
                         area.open and ":open" or ""))
             end
-
-            player:set_physics_override({gravity=lgrav})
             local pprivs = minetest.get_player_privs(name)
-            if messing then
-                pprivs.fly=nil
-            else
+            if afly then
                 pprivs.fly=true
+            else
+                pprivs.fly=nil
             end
             minetest.set_player_privs(name, pprivs) 
-                
+            
+            if agrav:
+                player:set_physics_override({gravity=agrav})
+            else:
+                player:set_physics_override({gravity=lgrav})
+            end
+
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
                 local str = ""
                 if area.name then str = area.name .. " " end
