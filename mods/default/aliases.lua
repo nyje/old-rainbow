@@ -1,5 +1,25 @@
 -- mods/default/aliases.lua
 
+minetest.register_alias("default:aspen_leaves","rainbow:leaves_lightgreen")
+minetest.register_alias("default:aspen_tree","rainbow:tree_white")
+minetest.register_alias("default:aspen_wood","rainbow:wood_white")
+minetest.register_alias("default:cobble","rainbow:cobble_grey")
+minetest.register_alias("default:dirt","rainbow:dirt_brown")
+minetest.register_alias("default:dirt_with_grass","rainbow:dirt_green")
+minetest.register_alias("default:grass_1","rainbow:grass1_green")
+minetest.register_alias("default:grass_2","rainbow:grass2_green")
+minetest.register_alias("default:grass_3","rainbow:grass3_green")
+minetest.register_alias("default:grass_4","rainbow:grass4_green")
+minetest.register_alias("default:grass_5","rainbow:grass5_green")
+minetest.register_alias("default:leaves","rainbow:leaves_green")
+minetest.register_alias("default:pine_needles","rainbow:leaves_green")
+minetest.register_alias("default:pine_tree","rainbow:tree_brown")
+minetest.register_alias("default:pine_wood","rainbow:wood_white")
+minetest.register_alias("default:sapling","air")
+minetest.register_alias("default:tree","rainbow:tree_brown")
+minetest.register_alias("default:water_source","rainbow:blue_water_source")
+minetest.register_alias("default:wood","rainbow:wood_brown")
+
 -- Aliases to support loading worlds using nodes following the old naming convention
 --[[ These can also be helpful when using chat commands, for example /giveme
 minetest.register_alias("stone", "default:stone")
