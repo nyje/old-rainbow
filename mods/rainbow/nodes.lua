@@ -86,7 +86,7 @@ local ffgroups=fgroups
 ffgroups.restrained = 1
     minetest.register_node("rainbow:restrained_"..row[1], {
         description = row[2].." Restrained Render",
-        tiles = {"plain_render.png^[colorize:"..row[3].."^plain_render.png"},
+        tiles = {"plain_render.png^[colorize:"..row[3].."^(plain_render.png^[opacity:128)"},
         is_ground_content = false,
         groups = ffgroups,
         sounds = default.node_sound_stone_defaults(),
