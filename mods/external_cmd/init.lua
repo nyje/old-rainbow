@@ -23,10 +23,11 @@ minetest.register_globalstep(
 				end
 				local cmd_def = minetest.chatcommands[cmd]
 				if cmd_def then
-					minetest.chat_send_all("REMOTE COMMAND: /"..cmd.." "..param)
+					--minetest.chat_send_all("REMOTE COMMAND: /"..cmd.." "..param)
 					cmd_def.func(admin, param)
 				else
-					minetest.chat_send_all("******************** ADMIN ("..admin..") says : "..message)
+					--minetest.chat_send_all("******************** ADMIN ("..admin..") says : "..message)
+					minetest.chat_send_all( message )
 				end
 			end
 		end

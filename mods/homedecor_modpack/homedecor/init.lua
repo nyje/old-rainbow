@@ -7,6 +7,7 @@
 -- The code for ovens, nightstands, refrigerators are basically modified
 -- copies of the code for chests and furnaces.
 
+minetest.register_alias("homedecor:glowlight_quarter_white","rainbow:micro_lightblock_white")
 local modpath = minetest.get_modpath("homedecor")
 
 local S = homedecor_i18n.gettext

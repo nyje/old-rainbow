@@ -1,0 +1,7 @@
+minetest.register_alias("unifiedbricks:clayblock_dark_red","rainbow:clay_red")
+minetest.register_alias("unifiedbricks:clayblock_medium_skyblue","rainbow:clay_cyan")
+minetest.register_alias("unifiedbricks:clayblock_medium_red","rainbow:clay_red")
+minetest.register_alias("unifiedbricks:clayblock_medium_blue","rainbow:clay_blue")
+minetest.register_alias("unifiedbricks:clayblock_medium_green","rainbow:clay_green")
+minetest.register_alias("unifiedbricks:clayblock_medium_skyblue","rainbow:clay_cyan")
+minetest.register_alias("unifiedbricks:clayblock_medium_yellow","rainbow:clay_yellow")

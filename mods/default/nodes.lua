@@ -194,7 +194,7 @@ default:cloud
 --
 -- Stone
 --
-
+minetest.register_alias("default:stone","rainbow:stone_darkgrey")
 -- minetest.register_node("default:stone", {
 -- 	description = "Stone",
 -- 	tiles = {"default_stone.png"},
@@ -2047,16 +2047,17 @@ minetest.register_node("default:obsidian_glass", {
 	groups = {cracky = 3},
 })
 
+minetest.register_alias("default:brick","rainbow:fancybrick_red")
 
-minetest.register_node("default:brick", {
-	description = "Brick Block",
-	paramtype2 = "facedir",
-	place_param2 = 0,
-	tiles = {"default_brick.png"},
-	is_ground_content = false,
-	groups = {cracky = 3},
-	sounds = default.node_sound_stone_defaults(),
-})
+--minetest.register_node("default:brick", {
+--	description = "Brick Block",
+--	paramtype2 = "facedir",
+--	place_param2 = 0,
+--	tiles = {"default_brick.png"},
+--	is_ground_content = false,
+--	groups = {cracky = 3},
+--	sounds = default.node_sound_stone_defaults(),
+--})
 
 
 minetest.register_node("default:meselamp", {

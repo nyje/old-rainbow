@@ -628,44 +628,44 @@ minetest.register_lbm({
 			color = "white"
 		end
 
-		local paletteidx, _ = unifieddyes.getpaletteidx("unifieddyes:"..color, "extended")
-
-		local old_fdir
-		local new_node = newname
-		local new_fdir = 1
-		local param2
-
-		if string.find(name, "glowlight") then
-			paletteidx, _ = unifieddyes.getpaletteidx("unifieddyes:"..color, "wallmounted")
-
-			old_fdir = math.floor(node.param2 / 4)
-
-			if old_fdir == 5 then
-				new_fdir = 0
-			elseif old_fdir == 1 then
-				new_fdir = 5
-			elseif old_fdir == 2 then
-				new_fdir = 4
-			elseif old_fdir == 3 then
-				new_fdir = 3
-			elseif old_fdir == 4 then
-				new_fdir = 2
-			elseif old_fdir == 0 then
-				new_fdir = 1
-			end
-			param2 = paletteidx + new_fdir
-		else
-			param2 = paletteidx
-		end
-
-		local meta = minetest.get_meta(pos)
-
-		if string.find(name, "table_lamp") or string.find(name, "standing_lamp") then
-			meta:set_string("palette", "ext")
-		end
-
-		minetest.set_node(pos, { name = new_node, param2 = param2 })
-		meta:set_string("dye", "unifieddyes:"..color)
+-- 		local paletteidx, _ = unifieddyes.getpaletteidx("unifieddyes:"..color, "extended")
+--
+-- 		local old_fdir
+-- 		local new_node = newname
+-- 		local new_fdir = 1
+-- 		local param2
+--
+-- 		if string.find(name, "glowlight") then
+-- 			paletteidx, _ = unifieddyes.getpaletteidx("unifieddyes:"..color, "wallmounted")
+--
+-- 			old_fdir = math.floor(node.param2 / 4)
+--
+-- 			if old_fdir == 5 then
+-- 				new_fdir = 0
+-- 			elseif old_fdir == 1 then
+-- 				new_fdir = 5
+-- 			elseif old_fdir == 2 then
+-- 				new_fdir = 4
+-- 			elseif old_fdir == 3 then
+-- 				new_fdir = 3
+-- 			elseif old_fdir == 4 then
+-- 				new_fdir = 2
+-- 			elseif old_fdir == 0 then
+-- 				new_fdir = 1
+-- 			end
+-- 			param2 = paletteidx + new_fdir
+-- 		else
+-- 			param2 = paletteidx
+-- 		end
+--
+-- 		local meta = minetest.get_meta(pos)
+--
+-- 		if string.find(name, "table_lamp") or string.find(name, "standing_lamp") then
+-- 			meta:set_string("palette", "ext")
+-- 		end
+--
+-- 		minetest.set_node(pos, { name = new_node, param2 = param2 })
+-- 		meta:set_string("dye", "unifieddyes:"..color)
 	end
 })
 

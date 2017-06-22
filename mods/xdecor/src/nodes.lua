@@ -481,12 +481,14 @@ local function register_hard_node(name, desc, def)
 	})
 end
 
-register_hard_node("cactusbrick", "Cactus Brick")
+--register_hard_node("cactusbrick", "Cactus Brick")
+minetest.register_alias("xdecor:cactusbrick", "rainbow:fancybrick_green")
 register_hard_node("coalstone_tile", "Coal Stone Tile")
 register_hard_node("desertstone_tile", "Desert Stone Tile")
 --register_hard_node("hard_clay", "Hardened Clay")
 minetest.register_alias("xdecor:hard_clay","rainbow:stoneblock_white")
-register_hard_node("moonbrick", "Moon Brick")
+--register_hard_node("moonbrick", "Moon Brick")
+minetest.register_alias("xdecor:moonbrick", "rainbow:fancybrick_grey")
 --register_hard_node("stone_tile", "Stone Tile")
 minetest.register_alias("xdecor:stone_tile","rainbow:stoneblock_grey")
 register_hard_node("stone_rune", "Runestone")
@@ -495,6 +497,7 @@ register_hard_node("stone_rune", "Runestone")
 -- 	sounds = default.node_sound_glass_defaults()
 -- })
 minetest.register_alias("xdecor:packed_ice","rainbow:ice_blue")
+
 register_hard_node("wood_tile", "Wooden Tile", {
 	groups = {choppy=1, wood=1, flammable=2},
 	sounds = default.node_sound_wood_defaults()

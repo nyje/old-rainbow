@@ -82,6 +82,21 @@ for _, row in ipairs(rainbow.colours) do
         fgroups.not_in_creative_inventory = nil
     end
 
+local ffgroups=fgroups
+ffgroups.brick = 1
+    minetest.register_node("rainbow:fancybrick_"..row[1], {
+        description = row[2].." Fancy Brick",
+        tiles = {"plain_render.png^[colorize:"..row[3].."^(rainbow_brick.png^[opacity:80)^rainbow_mortar.png"},
+        is_ground_content = false,
+        groups = ffgroups,
+        sounds = default.node_sound_stone_defaults(),
+     })
+    minetest.register_craft({
+        type = "shapeless",
+        output = "rainbow:fancybrick_"..row[1],
+        recipe = { "group:brick", "rainbow:dye_"..row[1] }
+    })
+    stairsplus:register_all("rainbow", "fancybrick_"..row[1], "rainbow:fancybrick_"..row[1], minetest.registered_nodes["rainbow:fancybrick_"..row[1]])
 
     minetest.register_node("rainbow:"..row[1].."_water_source", {
         description = row[2].." Water Source",
