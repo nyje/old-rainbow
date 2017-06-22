@@ -90,7 +90,8 @@ rainbow.colours = {
 	{"grey",       "Grey",       "#909090c0",   "rainbow:",                     {50,50},16},
 	{"orange",     "Orange",     "#ff8401c0",   "rainbow:orangeflower",         {20,25},17},
 	{"darkgrey",   "Dark Grey",  "#303030c0",   "rainbow:cookieflower",         {90,30},18},
-	{"darkbrown",   "Dark Brown",  "##5C4033c0",  "",                           {65,35},13},
+	{"darkbrown",  "Dark Brown", "#5C4033c0",   "",                           {68,38},19},
+	{"darkred",    "Dark Red",   "#800000c0",   "",                           {68,38},19},
 }
 
 rainbow.clut={}

@@ -83,6 +83,24 @@ for _, row in ipairs(rainbow.colours) do
     end
 
 local ffgroups=fgroups
+ffgroups.restrained = 1
+    minetest.register_node("rainbow:restrained_"..row[1], {
+        description = row[2].." Restrained Render",
+        tiles = {"plain_render.png^[colorize:"..row[3].."^plain_render.png"},
+        is_ground_content = false,
+        groups = ffgroups,
+        sounds = default.node_sound_stone_defaults(),
+     })
+    minetest.register_craft({
+        type = "shapeless",
+        output = "rainbow:restrained_"..row[1],
+        recipe = { "group:restrained", "rainbow:dye_"..row[1] }
+    })
+    stairsplus:register_all("rainbow", "restrained_"..row[1], "rainbow:restrained_"..row[1], minetest.registered_nodes["rainbow:restrained_"..row[1]])
+
+
+
+local ffgroups=fgroups
 ffgroups.brick = 1
     minetest.register_node("rainbow:fancybrick_"..row[1], {
         description = row[2].." Fancy Brick",
@@ -721,6 +739,14 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
 		is_ground_content = false,
 		light_source= default.LIGHT_MAX,
 		sounds = default.node_sound_glass_defaults(),
+		groups = {snappy = 2, choppy = 2, oddly_breakable_by_hand = 3},
+	})
+
+	add_node("binary","Benders Binary Block", row, "saw", {
+		tiles = {"rainbow_binary.png"},
+		is_ground_content = false,
+		light_source= default.LIGHT_MAX,
+		sounds = default.node_sound_stone_defaults(),
 		groups = {snappy = 2, choppy = 2, oddly_breakable_by_hand = 3},
 	})
 
