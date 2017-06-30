@@ -368,18 +368,18 @@ minetest.register_abm({
 	end
 })
 
-minetest.register_abm({
-	label = "unstone",
-	nodenames = {"default:stone"},
-	interval = 1,
-	chance = 1,
-	catch_up = false,
-
-	action = function(pos, node, _, _)
-		minetest.remove_node(pos)
-		minetest.check_for_falling(pos)
-	end
-})
+-- minetest.register_abm({
+-- 	label = "unstone",
+-- 	nodenames = {"default:stone"},
+-- 	interval = 1,
+-- 	chance = 1,
+-- 	catch_up = false,
+--
+-- 	action = function(pos, node, _, _)
+-- 		--minetest.remove_node(pos)
+-- 		--minetest.check_for_falling(pos)
+-- 	end
+-- })
 
 --
 -- Convert dirt to something that fits the environment

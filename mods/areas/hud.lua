@@ -6,7 +6,7 @@ areas.hud = {}
 local gcount=0
 minetest.register_globalstep(function(dtime)
     gcount = gcount+dtime
-    if gcount>0.2 then
+    if gcount>0.4 then
         gcount=0
         for _, player in pairs(minetest.get_connected_players()) do
             local name = player:get_player_name()
@@ -58,7 +58,7 @@ minetest.register_globalstep(function(dtime)
             else
                 pprivs.fly=nil
             end
-            minetest.set_player_privs(name, pprivs) 
+            minetest.set_player_privs(name, pprivs)
             player:set_physics_override({gravity=lgrav})
 
             for i, area in pairs(areas:getExternalHudEntries(pos)) do
@@ -68,7 +68,7 @@ minetest.register_globalstep(function(dtime)
                 if area.owner then str = str.."("..area.owner..")" end
                 table.insert(areaStrings, str)
             end
-            
+
             local areaString = string.format(afly.."Gravity: %.2fg   Areas: ",lgrav)
             if #areaStrings > 0 then
                 areaString = areaString.."\n"..

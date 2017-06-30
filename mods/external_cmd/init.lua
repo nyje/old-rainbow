@@ -8,8 +8,15 @@ if admin == nil then
 	admin = "SERVER"
 end
 
+local xtimer=0
+
 minetest.register_globalstep(
 	function(dtime)
+        xtimer = xtimer + dtime
+        if xtimer < 0.5 then
+            return
+        end
+        xtimer=0
 		local f = (io.open(minetest.get_worldpath("external_cmd").."/message", "r"))
 		if f ~= nil then
 			local message = f:read("*line")

@@ -7,7 +7,15 @@ ts_furniture.enable_sitting = true
 
 -- The following code is from "Get Comfortable [cozy]" (by everamzah; published under WTFPL).
 -- Thomas S. modified it, so that it can be used in this mod
+
+local tscount=0
+
 minetest.register_globalstep(function(dtime)
+        tscount = tscount + dtime
+        if tscount < 0.3 then
+            return
+        end
+        tscount=0
         local players = minetest.get_connected_players()
         for i=1, #players do
                 local name = players[i]:get_player_name()

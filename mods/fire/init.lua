@@ -235,18 +235,18 @@ if flame_sound then
 
 	-- Cycle for updating players sounds
 
-	minetest.register_globalstep(function(dtime)
-		timer = timer + dtime
-		if timer < cycle then
-			return
-		end
-
-		timer = 0
-		local players = minetest.get_connected_players()
-		for n = 1, #players do
-			fire.update_player_sound(players[n])
-		end
-	end)
+-- 	minetest.register_globalstep(function(dtime)
+-- 		timer = timer + dtime
+-- 		if timer < cycle then
+-- 			return
+-- 		end
+--
+-- 		timer = 0
+-- 		local players = minetest.get_connected_players()
+-- 		for n = 1, #players do
+-- 			fire.update_player_sound(players[n])
+-- 		end
+-- 	end)
 
 	-- Stop sound and clear handle on player leave
 

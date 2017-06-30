@@ -693,7 +693,7 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
 
     add_node("sand","Sand", row, "",  {
         tiles = {"plain_sand.png"},
-        groups = {crumbly = 3, falling_node = 1, sand = 1},
+        groups = {crumbly = 3, sand = 1},
         sounds = default.node_sound_sand_defaults(),
     })
 
@@ -766,7 +766,7 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
 
     add_node("gravel", "Gravel", row, "", {
         tiles = {"default_gravel.png"},
-        groups = {crumbly = 2, falling_node = 1, not_in_creative_inventory = 1},
+        groups = {crumbly = 2 },
         sounds = default.node_sound_gravel_defaults(),
         drop = {
             max_items = 1,

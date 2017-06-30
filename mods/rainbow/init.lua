@@ -10,9 +10,9 @@ local function do_pingkick ( )
             ping = math.floor(ping * 1000)
             if ping > 200 then
                 minetest.kick_player(name, "You were kicked for high ping. This server is in LONDON, try a server closer to you or fix your internet connection")
-                minetest.chat_send_all("Bye Bye " .. name .. ". They were kicked for high ping (" .. ping .. ")")
+                minetest.chat_send_all( name .. " was kicked for high ping (" .. ping .. ")")
             end
-            if ping > 150 then
+            if ping > 180 then
                 minetest.chat_send_player(name, "WARNING:" .. name .. "You are far away, your ping is high (" .. ping .. ", you may get kicked....")
             end
         end
@@ -24,7 +24,7 @@ minetest.after(60, do_pingkick)
 minetest.register_chatcommand("ping", {
     privs = {server = true},
     params = "",
-    description = "Get ip & ping of wielded item",
+    description = "Get ip & ping of players",
     func = function(player_name, param)
 		for i, player in pairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
@@ -45,6 +45,16 @@ minetest.register_chatcommand("wit", {
 	local player = minetest.get_player_by_name(player_name)
 	minetest.chat_send_player(player_name, player:get_wielded_item():to_string())
 	return
+    end
+})
+
+minetest.register_chatcommand("eday", {
+    privs = {settime = true},
+    params = "<player_name>",
+    description = "Eternal Day (It never gets dark.)",
+    func = function(player_name, param)
+        minetest.set_timeofday(0.5)
+        minetest.setting_set("timespeed","0")
     end
 })
 
