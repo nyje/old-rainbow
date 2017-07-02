@@ -1,3 +1,60 @@
+rainbow.add_pillar = function(node,row)
+    local name = string.split(node.name, ":")[2]
+    minetest.register_node("rainbow:column_bottom_"..name, {
+        drawtype = "nodebox",
+        description = "Column Base "..node.description,
+        tiles = node.tiles,
+        groups = node.groups,
+        sounds = default.node_sound_stone_defaults(),
+        light_source = node.light_source,
+        paramtype = "light",
+        paramtype2 = "facedir",
+        node_box = {
+            type = "fixed",
+            fixed = {
+                {-0.500000,-0.500000,-0.500000,0.500000,-0.375000,0.500000},
+                {-0.375000,-0.375000,-0.375000,0.375000,-0.125000,0.375000},
+                {-0.250000,-0.125000,-0.250000,0.250000,0.500000,0.250000},
+            },
+        },
+    })
+
+    minetest.register_node("rainbow:column_top_"..name, {
+        drawtype = "nodebox",
+        description = "Column top "..node.description,
+        tiles = node.tiles,
+        groups = node.groups,
+        sounds = default.node_sound_stone_defaults(),
+        light_source = node.light_source,
+        paramtype = "light",
+        paramtype2 = "facedir",
+    node_box = {
+        type = "fixed",
+        fixed = {
+            {-0.500000,0.312500,-0.500000,0.500000,0.500000,0.500000},
+            {-0.375000,0.062500,-0.375000,0.375000,0.312500,0.375000},
+            {-0.250000,-0.500000,-0.250000,0.250000,0.062500,0.250000},
+        },
+    },
+    })
+
+    minetest.register_node("rainbow:column_middle_"..name, {
+        drawtype = "nodebox",
+        description = "Column middle "..node.description,
+        tiles = node.tiles,
+        groups = node.groups,
+        sounds = default.node_sound_stone_defaults(),
+        light_source = node.light_source,
+        paramtype = "light",
+        paramtype2 = "facedir",
+        node_box = {
+            type = "fixed",
+            fixed = {
+                {-0.250000,-0.500000,-0.250000,0.250000,0.500000,0.250000},
+            },
+        },
+    })
+end
 
 rainbow.add_node = function(a,b,c,d,e)
     local nodename = "rainbow:"..a.."_" .. c[1]
@@ -28,6 +85,7 @@ rainbow.add_node = function(a,b,c,d,e)
     })
     if d == "saw" then
         stairsplus:register_all("rainbow", a.."_"..c[1], nodename, node)
+        rainbow.add_pillar(node,c)
     end
 end
 
@@ -72,81 +130,12 @@ rainbow.get_color = function(nodename)
     return nil
 end
 
-local pillar = {}
-
-
-
-
 for _, row in ipairs(rainbow.colours) do
     local fgroups = {choppy = 3, oddly_breakable_by_hand = 2, colourable=1}
     if row[1]~="white" then
         fgroups.not_in_creative_inventory = 1
     else
         fgroups.not_in_creative_inventory = nil
-    end
-    pillar.types = {
-    	{"fancybrick", "Fancy Brick", "plain_render.png^[colorize:"..row[3].."^(rainbow_brick.png^[opacity:80)^rainbow_mortar.png"},
-    }
-    for _, p in ipairs(pillar.types) do
-        local name = p[1]
-        local desc = p[2]
-        local tile = p[3]
-        -- Node Definition
-
-        local ffgroups=fgroups
-        ffgroups.pillar = 1
-        ffgroups.colourable = 1
-        minetest.register_node("rainbow:pillars_"..name.."_bottom_"..row[1], {
-            drawtype = "nodebox",
-            description = desc.." Pillar Base "..row[2],
-            tiles = {tile},
-            groups = ffgroups,
-            sounds = default.node_sound_stone_defaults(),
-            paramtype = "light",
-            paramtype2 = "facedir",
-            node_box = {
-                type = "fixed",
-                fixed = {
-                    {-0.500000,-0.500000,-0.500000,0.500000,-0.375000,0.500000},
-                    {-0.375000,-0.375000,-0.375000,0.375000,-0.125000,0.375000},
-                    {-0.250000,-0.125000,-0.250000,0.250000,0.500000,0.250000},
-                },
-            },
-        })
-
-        minetest.register_node("rainbow:pillars_"..name.."_top_"..row[1], {
-            drawtype = "nodebox",
-            description = desc.." Pillar Top "..row[2],
-            tiles = {tile},
-            groups = ffgroups,
-            sounds = default.node_sound_stone_defaults(),
-            paramtype = "light",
-            paramtype2 = "facedir",
-        node_box = {
-            type = "fixed",
-            fixed = {
-                {-0.500000,0.312500,-0.500000,0.500000,0.500000,0.500000},
-                {-0.375000,0.062500,-0.375000,0.375000,0.312500,0.375000},
-                {-0.250000,-0.500000,-0.250000,0.250000,0.062500,0.250000},
-            },
-        },
-        })
-
-        minetest.register_node("rainbow:pillars_"..name.."_middle_"..row[1], {
-            drawtype = "nodebox",
-            description = desc.." Pillar Middle "..row[2],
-            tiles = {tile},
-            groups = ffgroups,
-            sounds = default.node_sound_stone_defaults(),
-            paramtype = "light",
-            paramtype2 = "facedir",
-            node_box = {
-                type = "fixed",
-                fixed = {
-                    {-0.250000,-0.500000,-0.250000,0.250000,0.500000,0.250000},
-                },
-            },
-        })
     end
 
     local ffgroups=fgroups
