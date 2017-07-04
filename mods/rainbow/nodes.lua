@@ -1,9 +1,31 @@
+local get_color = function(nodename)
+    if minetest.registered_nodes[nodename].groups.colourable ~= nil then
+        local nametable = string.split(nodename, "_")
+        for i,v in ipairs(nametable) do
+            if rainbow.clut[v]~=nil then
+                    return v
+            end
+        end
+    end
+    return nil
+end
+
+rainbow.get_color = get_color
+
 rainbow.add_pillar = function(node,row)
-    local name = string.split(node.name, ":")[2]
-    minetest.register_node("rainbow:column_bottom_"..name, {
+    local pname = string.split(node.name, ":")[2]
+    local pcol = get_color(node.name)
+
+    local uta = false
+    if string.find(pname,'cool') then
+        uta=true
+    end
+
+    minetest.register_node("rainbow:column_bottom_"..pname, {
         drawtype = "nodebox",
         description = "Column Base "..node.description,
         tiles = node.tiles,
+        use_texture_alpha = uta,
         groups = node.groups,
         sounds = default.node_sound_stone_defaults(),
         light_source = node.light_source,
@@ -19,10 +41,11 @@ rainbow.add_pillar = function(node,row)
         },
     })
 
-    minetest.register_node("rainbow:column_top_"..name, {
+    minetest.register_node("rainbow:column_top_"..pname, {
         drawtype = "nodebox",
         description = "Column top "..node.description,
         tiles = node.tiles,
+        use_texture_alpha = uta,
         groups = node.groups,
         sounds = default.node_sound_stone_defaults(),
         light_source = node.light_source,
@@ -38,10 +61,11 @@ rainbow.add_pillar = function(node,row)
     },
     })
 
-    minetest.register_node("rainbow:column_middle_"..name, {
+    minetest.register_node("rainbow:column_middle_"..pname, {
         drawtype = "nodebox",
         description = "Column middle "..node.description,
         tiles = node.tiles,
+        use_texture_alpha = uta,
         groups = node.groups,
         sounds = default.node_sound_stone_defaults(),
         light_source = node.light_source,
@@ -118,17 +142,7 @@ local recolor = function(nodename,color)
     return resname
 end
 
-rainbow.get_color = function(nodename)
-    if minetest.registered_nodes[nodename].groups.colourable ~= nil then
-        local nametable = string.split(nodename, "_")
-        for i,v in ipairs(nametable) do
-            if rainbow.clut[v]~=nil then
-                    return v
-            end
-        end
-    end
-    return nil
-end
+
 
 for _, row in ipairs(rainbow.colours) do
     local fgroups = {choppy = 3, oddly_breakable_by_hand = 2, colourable=1}
@@ -325,7 +339,13 @@ for _, row in ipairs(rainbow.colours) do
                             local col = string.split(stk:get_name(), "_")[2]
                             local node= minetest.get_node(pos)
                             if minetest.registered_nodes[node.name].groups["colourable"] == 1 then
-
+                                if player~=nil then
+                                    local pname=player:get_player_name()
+                                    if minetest.is_protected(pos, pname) then
+                                        minetest.record_protection_violation(pos, pname)
+                                        return
+                                    end
+                                end
                                 minetest.set_node(pos, {name=recolor(node.name,col),param2=node.param2})
                             end
                         end
@@ -903,6 +923,17 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
         sounds = default.node_sound_glass_defaults(),
     })
 
+    add_node("lightglass", "Light Glass", row, "saw",{
+        drawtype = "glasslike_framed_optional",
+        tiles = {"default_glass.png"},
+        paramtype = "light",
+        light_source= default.LIGHT_MAX,
+        sunlight_propagates = true,
+        is_ground_content = false,
+        groups = {cracky = 3, oddly_breakable_by_hand = 3},
+        sounds = default.node_sound_glass_defaults(),
+    })
+
     add_node("coolglass", "Cool Glass", row, "saw",{
         tiles = {"plain_coolglass.png"},
         paramtype = "light",
@@ -913,6 +944,39 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
         groups = {cracky = 3, oddly_breakable_by_hand = 3},
         sounds = default.node_sound_glass_defaults(),
     })
+
+    add_node("lightcoolglass", "Light Cool Glass", row, "saw",{
+        tiles = {"plain_coolglass.png"},
+        paramtype = "light",
+        drawtype = "glasslike",
+        light_source= default.LIGHT_MAX,
+        sunlight_propagates = true,
+        use_texture_alpha = true,
+        is_ground_content = false,
+        groups = {cracky = 3, oddly_breakable_by_hand = 3},
+        sounds = default.node_sound_glass_defaults(),
+    })
+
+
+    add_node("cobweb", "Cobweb", row, "saw",{
+        drawtype = "plantlike",
+        tiles = {"xdecor_cobweb.png"},
+        liquid_viscosity = 8,
+        liquidtype = "source",
+        liquid_alternative_flowing = "rainbow:cobweb",
+        liquid_alternative_source = "rainbow:cobweb",
+        liquid_renewable = false,
+        liquid_range = 0,
+        walkable = false,
+        selection_box = {type = "regular"},
+        groups = {snappy=3, liquid=3, flammable=3},
+        sounds = default.node_sound_leaves_defaults()
+    })
+
+
+
+
+
 end
 
 

@@ -1,4 +1,5 @@
 default
+rainbow
 unifieddyes?
 homedecor_i18n
 building_blocks?
