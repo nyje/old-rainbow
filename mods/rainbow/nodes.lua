@@ -195,6 +195,13 @@ for _, row in ipairs(rainbow.colours) do
 
 
 
+    local walpha = tonumber( row[3]:sub(8,9), 16)
+    local wred = tonumber( row[3]:sub(2,3), 16)
+    local wgreen = tonumber( row[3]:sub(4,5), 16)
+    local wblue = tonumber( row[3]:sub(6,7), 16)
+    --print( row[3].." is a:"..walpha.." r:"..wred.." g:"..wgreen.." b:"..wblue )
+
+
     minetest.register_node("rainbow:"..row[1].."_water_source", {
         description = row[2].." Water Source",
         drawtype = "liquid",
@@ -234,7 +241,7 @@ for _, row in ipairs(rainbow.colours) do
         liquid_alternative_flowing = "rainbow:"..row[1].."_water_flowing",
         liquid_alternative_source = "rainbow:"..row[1].."_water_source",
         liquid_viscosity = 1,
-        --post_effect_color = {a = 103, r = 30, g = 60, b = 90},
+        post_effect_color = {a = walpha, r = wred, g = wgreen, b = wblue},
         groups = {water = 3, liquid = 3, puts_out_fire = 1, cools_lava = 1, colourable = 1, not_in_creative_inventory = 1} ,
         sounds = default.node_sound_water_defaults(),
     })
@@ -280,7 +287,7 @@ for _, row in ipairs(rainbow.colours) do
         liquid_alternative_flowing = "rainbow:"..row[1].."_water_flowing",
         liquid_alternative_source = "rainbow:"..row[1].."_water_source",
         liquid_viscosity = 1,
-        --post_effect_color = {a = 103, r = 30, g = 60, b = 90},
+        post_effect_color = {a = walpha, r = wred, g = wgreen, b = wblue},
         groups = {water = 3, liquid = 3, puts_out_fire = 1,
             not_in_creative_inventory = 1, cools_lava = 1},
         sounds = default.node_sound_water_defaults(),
@@ -799,7 +806,32 @@ local box	= {-0.5,-0.5,-0.5,0.5,-0.45,0.5}
     })
 
     add_node("stoneblock", "Stone Block", row, "saw",  {
-        tiles = {"default_stone_block.png"},
+        ctiles = {"plain_stone.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:130)"},
+        --ctiles = {"plain_stone.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:50)"},
+        is_ground_content = false,
+        groups = {cracky = 2, stone = 1},
+        sounds = default.node_sound_stone_defaults(),
+    })
+
+    add_node("clayblock", "Clay Block", row, "saw",  {
+        ctiles = {"plain_stuff.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:130)"},
+        --ctiles = {"plain_stone.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:50)"},
+        is_ground_content = false,
+        groups = {cracky = 2, stone = 1},
+        sounds = default.node_sound_dirt_defaults(),
+    })
+
+    add_node("check", "Checker", row, "saw",  {
+        ctiles = {"plain_tile.png^[colorize:"..row[3].."^(plain_tile.png^[opacity:128)"},
+        --ctiles = {"plain_stone.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:50)"},
+        is_ground_content = false,
+        groups = {cracky = 2, stone = 1},
+        sounds = default.node_sound_stone_defaults(),
+    })
+
+    add_node("tile", "Tile", row, "saw",  {
+        ctiles = {"plain_dirt.png^[colorize:"..row[3].."^(mask_checker.png^[opacity:128)"},
+        --ctiles = {"plain_stone.png^[colorize:"..row[3].."^(mask_tile.png^[opacity:50)"},
         is_ground_content = false,
         groups = {cracky = 2, stone = 1},
         sounds = default.node_sound_stone_defaults(),
