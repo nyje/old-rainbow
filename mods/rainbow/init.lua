@@ -54,29 +54,29 @@ minetest.register_chatcommand("eday", {
     description = "Eternal Day (It never gets dark.)",
     func = function(player_name, param)
         minetest.set_timeofday(0.5)
-        minetest.setting_set("timespeed","0")
+        minetest.setting_set("time_speed","0")
     end
 })
 
-minetest.register_chatcommand("info", {
-    params = "<player_name>",
-    description = "Get network information of player",
-    privs = {server = true},
-    func = function(player_name, param)
-    	if not param then
-    	    minetest.chat_send_player(player_name, "Player " .. param .. " was not found")
-            return
-        end
-        playerInfo = minetest.get_player_information(param)
-        minetest.chat_send_player(player_name, param ..
-            " - IP address - " .. playerInfo["address"])
-        minetest.chat_send_player(player_name, param ..
-            " - Avg rtt - " .. playerInfo["avg_rtt"])
-        minetest.chat_send_player(player_name, param ..
-            " - Connection uptime (seconds) - " .. playerInfo["connection_uptime"])
-        return
-    end
-})
+-- minetest.register_chatcommand("info", {
+--     params = "<player_name>",
+--     description = "Get network information of player",
+--     privs = {server = true},
+--     func = function(player_name, param)
+--     	if not param then
+--     	    minetest.chat_send_player(player_name, "Player " .. param .. " was not found")
+--             return
+--         end
+--         playerInfo = minetest.get_player_information(param)
+--         minetest.chat_send_player(player_name, param ..
+--             " - IP address - " .. playerInfo["address"])
+--         minetest.chat_send_player(player_name, param ..
+--             " - Avg rtt - " .. playerInfo["avg_rtt"])
+--         minetest.chat_send_player(player_name, param ..
+--             " - Connection uptime (seconds) - " .. playerInfo["connection_uptime"])
+--         return
+--     end
+-- })
 
 rainbow={}
 rainbow.config={}
@@ -102,6 +102,7 @@ rainbow.colours = {
 	{"darkgrey",   "Dark Grey",  "#303030c0",   "rainbow:cookieflower",         {90,30},18},
 	{"darkbrown",  "Dark Brown", "#5C4033c0",   "",                           {68,38},19},
 	{"darkred",    "Dark Red",   "#800000c0",   "",                           {68,38},19},
+	{"gold",       "Gold",       "#ffd700c0",   "",                           {68,38},19},
 }
 
 rainbow.clut={}
@@ -317,9 +318,7 @@ minetest.register_alias("handle_schematics:dig_here","default:air")
 minetest.register_alias("mapgen_water_source", "rainbow:pink_water_source")
 minetest.register_alias("mapgen_river_water_source", "rainbow:red_water_source")
 
-minetest.register_alias("building_blocks:fakegrass","rainbow:dirt_green")
 minetest.register_alias("castle:workbench","homedecor:tool_cabinet")
-minetest.register_alias("darkage:slate","rainbow:stone_grey")
 
 
 minetest.register_alias("stairs:slab_pine_wood","rainbow:slab_wood_white")

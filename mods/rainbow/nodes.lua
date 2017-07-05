@@ -87,11 +87,16 @@ rainbow.add_node = function(a,b,c,d,e)
     end
     local node = e
     local tiles={}
-    local k = ""
-    local v = ""
-    for k,v in pairs(e.tiles) do
-        table.insert(tiles, v .. "^[colorize:" .. c[3] )
+    if e.ctiles then
+        tiles = e.ctiles
+    else
+        local k = ""
+        local v = ""
+        for k,v in pairs(e.tiles) do
+            table.insert(tiles, v .. "^[colorize:" .. c[3] )
+        end
     end
+
     if e.wield_image then node.wield_image=e.wield_image.."^[colorize:"..c[3] end
     if e.inventory_image then node.inventory_image=e.inventory_image.."^[colorize:"..c[3] end
     node.groups[a] = 1
@@ -187,6 +192,8 @@ for _, row in ipairs(rainbow.colours) do
         recipe = { "group:brick", "rainbow:dye_"..row[1] }
     })
     stairsplus:register_all("rainbow", "fancybrick_"..row[1], "rainbow:fancybrick_"..row[1], minetest.registered_nodes["rainbow:fancybrick_"..row[1]])
+
+
 
     minetest.register_node("rainbow:"..row[1].."_water_source", {
         description = row[2].." Water Source",
